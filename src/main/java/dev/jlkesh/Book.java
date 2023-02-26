@@ -19,9 +19,7 @@ public class Book {
     private String id;
     private String title;
 
-    @OneToOne(cascade = {CascadeType.REMOVE, CascadeType.PERSIST},
-            fetch = FetchType.LAZY
-    )
+    @OneToOne(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
     private Author author;
 
     @Override

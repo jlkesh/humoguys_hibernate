@@ -1,19 +1,35 @@
 package dev.jlkesh;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.GenericGenerator;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
 @Getter
 @Setter
-@ToString
+/*@ToString*/
+@Entity
 public class Book {
+    @Id
+    /*@UuidGenerator(style = UuidGenerator.Style.TIME)*/
+    @GenericGenerator(name = "uuid", strategy = "uuid2")
+    @GeneratedValue(generator = "uuid")
     private String id;
     private String title;
-    private String author;
+
+    @OneToOne(cascade = {CascadeType.REMOVE, CascadeType.PERSIST},
+            fetch = FetchType.LAZY
+    )
+    private Author author;
+
+    @Override
+    public String toString() {
+        return "Book{" +
+                "id='" + id + '\'' +
+                ", title='" + title + '\'' +
+                ", author=" + getAuthor() +
+                '}';
+    }
 }

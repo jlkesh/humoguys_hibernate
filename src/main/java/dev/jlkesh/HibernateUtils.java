@@ -1,13 +1,23 @@
 package dev.jlkesh;
 
-import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.boot.MetadataSources;
+import org.hibernate.boot.registry.StandardServiceRegistry;
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
 public class HibernateUtils {
-    private SessionFactory sessionFactory = load();
+    private static SessionFactory sessionFactory = load();
 
-    private SessionFactory load() {
+    public static SessionFactory getSessionFactory() {
+        return sessionFactory;
+    }
 
-        return null;
+    ;
+
+    private static SessionFactory load() {
+        final StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
+                .configure("hibernate.cfg.xml")
+                .build();
+        return new MetadataSources(registry).buildMetadata().buildSessionFactory();
     }
 }

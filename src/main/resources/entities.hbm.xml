@@ -1,0 +1,28 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+
+    <class name="dev.jlkesh.Book" entity-name="book">
+        <id name="id">
+            <column name="book_id"/>
+            <generator class="uuid"/>
+        </id>
+        <property name="title" column="title" type="string" length="300"/>
+        <property name="author" column="author" type="string" length="1000"/>
+    </class>
+
+    <class name="dev.jlkesh.Author" table="author">
+        <id name="id">
+            <generator class="uuid"/>
+        </id>
+        <property name="fullName" column="author_name" type="string"/>
+        <property name="age" column="author_age" type="int"/>
+    </class>
+
+    <query name="findById">select t from book t where t.id = :id</query>
+    <sql-query name="findByIdNative">select * from book t where t.book_id = :id</sql-query>
+
+</hibernate-mapping>

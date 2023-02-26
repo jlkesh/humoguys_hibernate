@@ -13,7 +13,7 @@ import lombok.*;
 @Setter
 @ToString
 public class Book {
-    private Integer id;
+    private String id;
     private String title;
     private String author;
 }

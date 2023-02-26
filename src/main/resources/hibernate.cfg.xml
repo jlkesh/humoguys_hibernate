@@ -9,7 +9,9 @@
         <property name="connection.username">postgres</property>
         <property name="connection.password">123</property>
         <property name="hibernate.show_sql">true</property>
+        <property name="hibernate.format_sql">true</property>
         <property name="hibernate.hbm2ddl.auto">update</property>
-        <mapping resource="book.hbm.xml"  />
+        <property name="hibernate.current_session_context_class">org.hibernate.context.internal.ThreadLocalSessionContext</property>
+        <mapping resource="entities.hbm.xml"  />
     </session-factory>
 </hibernate-configuration>
